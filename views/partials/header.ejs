@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mongoose Flights</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  <title><%= title %></title>
 </head>
 <body>
-  <main>
-    <h1><%= title %></h1>
+  <a href="/">Home</a>
+   | 
+  <a href="/flights">All Flights</a>
+  <h1><%= title %></h1>
+  <nav>
+    <h1>Flight Tracker <i class="fa-solid fa-plane-departure"></i></h1>
+    <a href= "/flights" class="button">All Flights</a>
+    <a href= "/flights/new" class="button">Add Flight <i class="fa fa-plus></i></a>
+  </nav>
+</body>
+</html>
