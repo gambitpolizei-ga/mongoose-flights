@@ -10,7 +10,7 @@ async function create(req, res) {
         try {
             await flight.save();
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
-        res.redirect(`/flights/<%= flight.id %>}`);
+        res.redirect(`/flights/${flight._id}`);
 }

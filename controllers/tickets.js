@@ -13,20 +13,21 @@ async function newTicket(req, res) {
 }
 
 async function create(req, res) {
-    const flight = await Flight.findById(req.params.id);
-    flight.tickets.push(req.body);
-    try {
-        await flight.save();
+    
+    try { 
+        req.body.flight=req.params.id
+        const ticket = await Ticket.create(req.body)
+        console.log('ticket', ticket)
+        res.redirect(`/flights/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
-    res.redirect(`/flights/<%= flight.id %>}`);;
 }
 
 async function show(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
         Ticket.find({flight: flight._id}, function(err, tickets) {
-            res.render('flights/show', {ticket});
+            res.render('flights/show', {tickets});
         });
     });
 }
