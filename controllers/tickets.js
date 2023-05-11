@@ -9,11 +9,10 @@ module.exports = {
 
 async function newTicket(req, res) {
     const flight = await Flight.findById(req.params.id)
-    res.render('tickets/new', {title: 'Add Ticket'})
+    res.render('tickets/new', {title: 'New Ticket'})
 }
 
 async function create(req, res) {
-    
     try { 
         req.body.flight=req.params.id
         const ticket = await Ticket.create(req.body)
