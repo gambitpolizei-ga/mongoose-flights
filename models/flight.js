@@ -6,24 +6,25 @@ const destinationSchema = new Schema({
         type: String,
         enum: ['LAX', 'SFO', 'IAD', 'BOS'],
     },
-    arrival: Date
-});
+    arrival: {
+        type: Date,
+    }
+})
 
 const flightSchema = new Schema({
     airline: {
         type: String,
-        enum: ['Spirit', 'United', 'JetBlue', 'American']
+        enum: ['Spirit', 'United', 'JetBlue', 'American'],
     },
     flightNo: {
         type: Number,
-        required: true,
         min: 10,
         max: 9999
     },
     departs: {
         type: Date,
         default: function() {
-            return new Date().getFullYear();
+            return new Date(new Date().setFullYear(new Date ().getFullYear() + 1));
         }
     },
     airport: {
@@ -31,7 +32,7 @@ const flightSchema = new Schema({
         enum: ['LAX', 'SFO', 'IAD', 'BOS'],
         default: 'IAD'
     },
-    destinations: [destinationSchema]
+    destinations: [destinationSchema],
 });
 
 module.exports = mongoose.model('Flight', flightSchema);

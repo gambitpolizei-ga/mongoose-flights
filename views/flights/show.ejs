@@ -1,61 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+<%- include('../partials/header') %>
+
 <body>
 <section id="show-page">
   <div>Airport: </div>
   <div><%= flight.airport %></div>
   <div>Airline: </div>
   <div><%= flight.airline %></div>
-  <div>flight number: </div>
+  <div>Flight Number: </div>
   <div><%= flight.flightNo %></div>
   <div>Departs: </div>
   <div><%= flight.departs %></div>
 </section>
 <br>
-<h2>Destination</h2>
+<h2>Destinations</h2>
 <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-    <label>Destination: </label>
+  <label>Destination:
     <select name="airport" >
         <option value="LAX">LAX</option>
         <option value="SFO">SFO</option>
         <option value="IAD">IAD</option>
         <option value="BOS">BOS</option>
     </select>
-    <label>Arrival
-      <input type="datetime-local"> 
-    </label>
+  </label><br>
+  <label>Arrival:
+    <input type="datetime-local" name="arrival"> 
+  </label><br>
     <input type="submit" value="Add Destination">
 </form>
-<% if (flight.destinations.length) { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Destination</th>
-          <th>Arrival</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% flight.destinations.forEach(function(d) { %>
-        <tr>
-          <td><%= d.airport %></td>
-          <td><%= d.arrival %></td>
-        </tr>
-        <% }); %>
-        <tr>
-          <td colspan="2"></td>
-        </tr>
-      </tbody>
-    </table>
-    <% } else { %>
-    <h5>No Destinations Yet</h5>
-    <% } %>
-    <a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a>
+<section id="show-page">
+  <% flight.destinations.forEach(function(f) { %>
+    <div>Airport</div>
+    <div><%= f.airport %></div>
+    <div>Arrival</div>
+    <div><%= f.arrival %></div>
+  <% }) %>
+</section>
 </body>
-</html>
+
+<%- include('../partials/footer') %>

@@ -4,8 +4,15 @@ module.exports = {
     new: newFlight,
     create,
     index,
-    show
+    show,
+    createDestination,
+    delete: deleteOne
 };
+
+async function deleteOne(req, res) {
+    await Flight.deleteOne({_id: req.params.id})
+    res.redirect('/flights')
+}
 
 function newFlight(req, res) {
     res.render('flights/new', {errorMsg: '' });
@@ -32,5 +39,16 @@ async function show(req, res) {
     res.render('flights/show', {title: 'Flight Details', flight});
     console.log(flight)
 }
-  
- 
+
+async function createDestination(req, res) {
+    console.log('req.body', req.body);
+    try {
+        const flight = await Flight.findById(req.params.id);
+        flight.destinations.push(req.body)
+        await flight.save()
+        res.redirect(`/flights/$(req.params.id}`);
+        } catch (err) {
+            console.log(err);
+            res.redirect(`/flight/$(req.params.id}`);
+        }
+}

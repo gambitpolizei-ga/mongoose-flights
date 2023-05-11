@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <body>
-    <h2>All Flights</h2>
+  <h2>All Flights</h2>
     <table id="list">
       <thead>
         <tr>
@@ -11,20 +11,18 @@
           <th>Departs</th>
         </tr>
       </thead>
-      <tbody>
+    <tbody>
         <% flights.forEach(function(f) { %>
-          <tr>
-            <td><%= f.airport %></td>
-            <td><%= f.airline %></td>
-            <td><%= f.flightNo %></td>
-            <td><%= f.departs %></td>
-            <td><a href="/flights/<%= f._id %>">Details</a></td>
-          </tr>
+        <tr>
+          <td><%= f.airport %></td>
+          <td><%= f.airline %></td>
+          <td><%= f.flightNo %></td>
+          <td><%= f.departs %></td>
+          <td><a href="/flights/<%= f._id %>">Details</a></td>
+        </tr>
         <% }) %>
-      </tbody>
+    </tbody>
     </table>   
-    <a href="/flights/new">Add New Flight</a>
 </body>
-</html>
 
 <%- include('../partials/footer') %>
